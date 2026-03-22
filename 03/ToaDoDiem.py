@@ -1,37 +1,40 @@
 import math
+
 class Point:
-    """ Repersent a point in 2-D Geometry"""
-    x = int
-    y = int
-    # Hàm khởi tạo
-    def __init__(self, x = 0, y = 0):
+    def __init__(self, x: int, y: int):
         self.x = x
         self.y = y
-    # Hàm trả về
-    def __str__(self):
-        return "(%s, %s)" % (self.x, self.y)
-    
-    # Phương thức nhập điểm từ bàn phím
-    def read(self):
-        print("\nNhập tọa độ cho điểm B")
-        self.x = int(input("Nhap x: "))
-        self.y = int(input("Nhap y: "))
-    # Hàm tính khoảng cách 
-    def distance(self, point):
-        d = math.sqrt((self.x - point.x)**2 + (self.y - point.y)**2)
-        return d
 
-DiemA = Point(3, 4)
-print("Tọa độ của điểm A là: ",DiemA)
+    def hien_thi(self):
+        print(f"Điểm ({self.x}, {self.y})")
 
-DiemB = Point()
-DiemB.read()
-print("Tọa độ của điểm B là: ",DiemB)
+    def doi_xung_qua_O(self):
+        # Điểm đối xứng qua gốc O: (-x, -y)
+        return Point(-self.x, -self.y)
 
-DiemC = Point(-DiemB.x, -DiemB.y)
-print("\nTọa độ của C đối xứng với B qua O",)
-print("Tọa độ của điểm C là: ",DiemC)
+    def khoang_cach_den_O(self):
+        return math.sqrt(self.x**2 + self.y**2)
 
-gocToaDo = Point()
-print("\nKhoảng cách từ điểm B đến gốc tọa độ là: ",DiemB.distance(gocToaDo))
-print("Khoảng cách từ điểm A đến điểm B là: ",DiemA.distance(DiemB))
+    def khoang_cach_den(self, other):
+        return math.sqrt((self.x - other.x)**2 + (self.y - other.y)**2)
+
+
+# ---- Tạo điểm A(3, 4) ----
+A = Point(3, 4)
+print("Điểm A:"); A.hien_thi()
+
+# ---- Nhập điểm B từ bàn phím ----
+xb = int(input("Nhập x của B: "))
+yb = int(input("Nhập y của B: "))
+B = Point(xb, yb)
+print("Điểm B:"); B.hien_thi()
+
+# ---- Điểm C đối xứng với B qua O ----
+C = B.doi_xung_qua_O()
+print("Điểm C (đối xứng B qua O):"); C.hien_thi()
+
+# ---- Khoảng cách B → O ----
+print(f"Khoảng cách B đến O: {B.khoang_cach_den_O():.2f}")
+
+# ---- Khoảng cách A → B ----
+print(f"Khoảng cách A đến B: {A.khoang_cach_den(B):.2f}")
