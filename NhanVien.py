@@ -4,7 +4,7 @@ class NhanVien:
         self.__ten_nhan_vien = ten_nhan_vien
         self.__luong_co_ban = float(luong_co_ban)
         self.__he_so_luong = float(he_so_luong)
-        
+     
         # Thuộc tính Public (tương ứng với dấu +)
         self.LUONG_MAX = float(luong_max)
 
